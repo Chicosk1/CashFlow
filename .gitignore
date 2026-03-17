@@ -1,0 +1,47 @@
+# ==========================================
+# 1. FRONTEND (Node.js & Angular)
+# ==========================================
+node_modules/
+dist/
+/cashflow-ui/out-tsc/
+/cashflow-ui/bazel-out/
+.angular/
+npm-debug.log
+yarn-error.log
+
+# ==========================================
+# 2. BACKEND (Java, Spring Boot & Maven)
+# ==========================================
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.log
+
+!.mvn/wrapper/maven-wrapper.jar
+
+# ==========================================
+# 3. AMBIENTE E SEGURANÇA (Opcional, mas recomendado)
+# ==========================================
+application-secret.properties
+application-prod.properties
+.env
+
+# ==========================================
+# 4. IDEs E EDITORES (VS Code, IntelliJ, etc)
+# ==========================================
+.vscode/
+.idea/
+*.iml
+*.iws
+*.classpath
+*.project
+*.settings/
+
+# ==========================================
+# 5. SISTEMA OPERACIONAL
+# ==========================================
+.DS_Store
+Thumbs.db
