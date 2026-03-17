@@ -1,15 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
-export interface Transacao {
-  id: number;
-  descricao: string;
-  valor: number;
-  tipo: 'RECEITA' | 'DESPESA';
-  categoria: string;
-  data: string;
-}
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-transaction-list',
@@ -18,11 +10,24 @@ export interface Transacao {
   templateUrl: './transaction-list.html',
   styleUrls: ['./transaction-list.css']
 })
-export class TransactionList {
-  transacoes: Transacao[] = [
-    { id: 1, descricao: 'Salário Mensal', valor: 5000.00, tipo: 'RECEITA', categoria: 'Salário', data: '2026-03-05' },
-    { id: 2, descricao: 'Aluguel', valor: -1500.00, tipo: 'DESPESA', categoria: 'Moradia', data: '2026-03-10' },
-    { id: 3, descricao: 'Mercado', valor: -650.50, tipo: 'DESPESA', categoria: 'Alimentação', data: '2026-03-12' },
-    { id: 4, descricao: 'Venda de Bicicleta', valor: 430.00, tipo: 'RECEITA', categoria: 'Extra', data: '2026-03-15' }
-  ];
+
+export class TransactionList implements OnInit {
+
+  transacoes: any[] = [];
+
+  constructor(private api: ApiService) {}
+
+  ngOnInit() {
+    this.carregarTransacoes();
+  }
+
+  carregarTransacoes() {
+    this.api.getTransacoes().subscribe({
+      next: (dadosQueVieramDoBanco) => {
+        this.transacoes = dadosQueVieramDoBanco;
+        console.log("Transações do Banco:", this.transacoes);
+      },
+      error: (erro) => console.error("Erro ao buscar transações", erro)
+    });
+  }
 }

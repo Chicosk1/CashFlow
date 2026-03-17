@@ -1,1 +1,65 @@
-<p>transaction-form works!</p>
+<div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-100 mt-8">
+  
+  <h2 class="text-2xl font-bold text-gray-800 mb-6">Nova Transação</h2>
+
+  <form [formGroup]="formulario" (ngSubmit)="salvar()" class="space-y-6">
+    
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+      <input type="text" formControlName="descricao" placeholder="Ex: Conta de Luz" 
+             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+      
+      <span *ngIf="formulario.get('descricao')?.invalid && formulario.get('descricao')?.touched" class="text-red-500 text-xs mt-1">
+        A descrição é obrigatória.
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Valor (R$)</label>
+        <input type="number" formControlName="valor" placeholder="0.00" step="0.01"
+               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        <span *ngIf="formulario.get('valor')?.invalid && formulario.get('valor')?.touched" class="text-red-500 text-xs mt-1">
+          Insira um valor válido maior que zero.
+        </span>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Tipo</label>
+        <select formControlName="tipo" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+          <option value="RECEITA">Receita</option>
+          <option value="DESPESA">Despesa</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
+        <input type="text" formControlName="categoria" placeholder="Ex: Moradia, Salário..."
+               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Data</label>
+        <input type="date" formControlName="data"
+               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+      </div>
+
+    </div>
+
+    <div class="pt-4 flex justify-end space-x-4 border-t border-gray-100">
+      <a routerLink="/transacoes" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition font-medium">
+        Cancelar
+      </a>
+      <button type="submit" [disabled]="formulario.invalid" 
+              class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium disabled:opacity-50 disabled:cursor-not-allowed">
+        Salvar Transação
+      </button>
+    </div>
+
+  </form>
+</div>
