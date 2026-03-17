@@ -1,0 +1,32 @@
+<div class="space-y-6">
+  
+  <div>
+    <h1 class="text-3xl font-bold text-gray-800">Visão Geral</h1>
+    <p class="text-gray-500">Acompanhe o resumo das suas finanças.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center items-center hover:shadow-md transition">
+      <h2 class="text-gray-500 font-semibold mb-2">Total de Receitas</h2>
+      <p class="text-3xl font-bold text-green-500">
+        {{ totalReceitas | currency:'BRL':'symbol':'1.2-2' }}
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-center items-center hover:shadow-md transition">
+      <h2 class="text-gray-500 font-semibold mb-2">Total de Despesas</h2>
+      <p class="text-3xl font-bold text-red-500">
+        {{ totalDespesas | currency:'BRL':'symbol':'1.2-2' }}
+      </p>
+    </div>
+
+    <div class="bg-blue-600 p-6 rounded-2xl shadow-md flex flex-col justify-center items-center text-white hover:bg-blue-700 transition">
+      <h2 class="text-blue-200 font-semibold mb-2">Saldo Atual</h2>
+      <p class="text-4xl font-extrabold">
+        {{ saldoAtual | currency:'BRL':'symbol':'1.2-2' }}
+      </p>
+    </div>
+
+  </div>
+</div>
